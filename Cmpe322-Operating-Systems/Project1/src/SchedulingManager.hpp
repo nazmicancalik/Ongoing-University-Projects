@@ -4,6 +4,8 @@
 #include "PCB.hpp"
 #include "IOManager.hpp"
 #include <queue>
+#include <memory>
+#include <algorithm>
 
 class SchedulingManager
 {
@@ -17,8 +19,9 @@ public:
   void simulate();
 
 private:
+  void initializeProcessInstructions();
   std::string processFile;
-  std::queue<std::shared_ptr<PCB>> arrivalQueue;
+  std::vector<std::shared_ptr<PCB>> arrivalQueue;
   std::queue<std::shared_ptr<PCB>> readyQueue;
 };
 

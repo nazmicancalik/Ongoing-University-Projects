@@ -37,7 +37,7 @@ std::string PCB::getProcessName()
 
 
 //Returns a pointer to the adress of the instrucitons vector.
-std::vector<int> *PCB::getInstructions()
+std::vector<instruction> *PCB::getInstructions()
 {
 	return &instructions;
 }

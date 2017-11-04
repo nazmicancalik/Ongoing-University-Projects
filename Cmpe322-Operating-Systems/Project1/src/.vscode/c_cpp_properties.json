@@ -28,6 +28,7 @@
             "includePath": [
                 "/usr/include/x86_64-linux-gnu/c++/5.4.0",
                 "/usr/include/c++/5.4.0",
+                "/usr/include/c++/",
                 "/usr/local/include",
                 "/usr/include/x86_64-linux-gnu",
                 "/usr/include",
