@@ -15,11 +15,12 @@ public:
   SchedulingManager(std::string &processFile);
   ~SchedulingManager();
   void initializeArrivalQueue();
+  void printProcesses();
   void initialize();
   void simulate();
 
 private:
-  void initializeProcessInstructions();
+  //void initializeProcessInstructions();
   std::string processFile;
   std::vector<std::shared_ptr<PCB>> arrivalQueue;
   std::queue<std::shared_ptr<PCB>> readyQueue;

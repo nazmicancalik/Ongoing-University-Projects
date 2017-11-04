@@ -20,7 +20,8 @@ inline void write(const std::string fileName, const std::string line)
 
 inline std::shared_ptr<std::vector<std::string>> readTokens(const std::string fileName)
 {
-    std::ifstream fileOperator(fileName);
+    std::string name = "./input/" + fileName;
+    std::ifstream fileOperator(name);
     std::shared_ptr<std::vector<std::string>> tokens =
         std::make_shared<std::vector<std::string>>(std::vector<std::string>());
 

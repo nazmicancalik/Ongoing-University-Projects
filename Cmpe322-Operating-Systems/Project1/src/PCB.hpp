@@ -1,9 +1,12 @@
 #ifndef PCB_H
 #define PCB_H
 
+#include "IOManager.hpp"
+
 #include <iostream>
 #include <vector>
 #include <string>
+#include <memory>
 
 struct instruction
 {
@@ -22,7 +25,6 @@ public:
 	std::vector<instruction> *getInstructions();
 	int getCurrentInstructionNumber();
 	int getArrivalTime();
-	bool operator<(const PCB &other);
 private:
 	void initializeInstructions();
 	std::string processName;
