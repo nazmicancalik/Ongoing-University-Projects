@@ -1,5 +1,7 @@
 #include "SchedulingManager.hpp"
 
+#include <memory>
+
 //Default Constructor
 SchedulingManager::SchedulingManager()
 {
@@ -34,16 +36,9 @@ void SchedulingManager::initializeArrivalQueue()
     for (int i = 0; i < tokens.size() - 2; i += 3)
     {
         //Create a process.
-        PCB process;
         int arrivalTime = std::stoi(tokens.at(i + 2));
-        process = PCB(tokens.at(i), tokens.at(i + 1), arrivalTime);
-
-        //Put the process in arrivalQueue.
-        std::cout << "Process name: " << process.getProcessName()
-                  << "\nProcess instruction file name: "
-                  << process.getInstructionFileName()
-                  << "\nProcess arrival time: " << process.getArrivalTime()
-                  << std::endl;
-        arrivalQueue.push(&process);
+        std::shared_ptr<PCB> process =
+            std::make_shared<PCB>(PCB(tokens.at(i), tokens.at(i + 1), arrivalTime));
+        arrivalQueue.push(process);
     }
 }

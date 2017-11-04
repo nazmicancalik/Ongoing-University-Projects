@@ -18,8 +18,8 @@ public:
 
 private:
   std::string processFile;
-  std::queue<PCB *> arrivalQueue;
-  std::queue<PCB *> readyQueue;
+  std::queue<std::shared_ptr<PCB>> arrivalQueue;
+  std::queue<std::shared_ptr<PCB>> readyQueue;
 };
 
 #endif
