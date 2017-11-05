@@ -1,61 +1,59 @@
-#include "PCB.hpp"
+#include "PCB.h"
 
 //Default constructor
-PCB::PCB()
-{
+PCB::PCB() {
 }
 
-//Constructor with parameters
+//Constructor with parameters Every PCB initializes its own instructions by itself.
 PCB::PCB(std::string &aProcessName, std::string &anInstructionFileName, int anArrivalTime)
-	: processName(aProcessName), instructionFileName(anInstructionFileName), arrivalTime(anArrivalTime)
-{
+        : processName(aProcessName), instructionFileName(anInstructionFileName), arrivalTime(anArrivalTime) {
+    initializeInstructions();
+    currentInstructionNumber = 0;
 }
 
 //Destructor
-PCB::~PCB()
-{
+PCB::~PCB() {
 }
 
-//Operator overloading for sorting the arrival queue.
-bool PCB::operator<(const PCB &other)
-{
-	return arrivalTime < other.arrivalTime;
+//Initializes the instructions vector of the process.
+void PCB::initializeInstructions() {
+    std::shared_ptr<std::vector<std::string>> tokens;
+    tokens = IOManager::readTokens(instructionFileName);
+    //Parse all the instructions.
+    for (int i = 0; i < tokens->size() - 1; i += 2) {
+        //Get the instruction
+        instruction instruction1;
+        instruction1.name = tokens->at(i);
+        instruction1.length = std::stoi(tokens->at(i + 1));
+
+        //Push the instruction
+        instructions.push_back(instruction1);
+    }
 }
 
-
-//Initializes the instructions finish time vector.
-void PCB::initializeInstructions()
-{
-	//According to the cases initialize the instructions vector of the process.
-	//TODO
-}
 //Getter for process name.
-std::string PCB::getProcessName()
-{
-	return processName;
+std::string PCB::getProcessName() {
+    return processName;
 }
-
 
 //Returns a pointer to the adress of the instrucitons vector.
-std::vector<instruction> *PCB::getInstructions()
-{
-	return &instructions;
+std::vector<instruction> *PCB::getInstructions() {
+    return &instructions;
 }
-
 
 //Returns the name of the instruction file name.
-std::string PCB::getInstructionFileName()
-{
-	return instructionFileName;
+std::string PCB::getInstructionFileName() {
+    return instructionFileName;
 }
 
-//Return current instruction number.
-int PCB::getCurrentInstructionNumber()
-{
-	return currentInstructionNumber;
+int PCB::getArrivalTime() {
+    return arrivalTime;
 }
 
-int PCB::getArrivalTime()
-{
-	return arrivalTime;
+void PCB::executeCurrentInstruction() {
+    currentInstructionNumber++;
+}
+
+instruction *PCB::getCurrentInstruction() {
+    return &instructions.at(currentInstructionNumber);
 }
