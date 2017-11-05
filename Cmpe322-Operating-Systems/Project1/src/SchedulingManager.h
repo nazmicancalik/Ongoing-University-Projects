@@ -10,6 +10,7 @@
 #include <queue>
 #include <memory>
 #include <algorithm>
+#include <deque>
 
 class SchedulingManager {
 
@@ -31,7 +32,7 @@ public:
 private:
     void putArrivedPCBToReadyQueue();
 
-    void executeProcess();
+    void executeInstruction();
 
     void takeProcessIntoCpu();
 
@@ -39,15 +40,19 @@ private:
 
     bool canExecuteNextInstruction();
 
+    void printQueue();
+
     std::string processFile;
     std::vector<std::shared_ptr<PCB>> arrivalQueue;
-    std::queue<std::shared_ptr<PCB>> readyQueue;
-    const int quantum = 100;
+    std::deque<std::shared_ptr<PCB>> readyQueue;
+    std::vector<std::shared_ptr<PCB>> finishedProcesses;
+    std::shared_ptr<PCB> currentProcessInCpu;
+    int quantum = 100;
     int remainingQuantumTime = 100;
     int currentTime;
     int nextClosestEventTime = 0;
     bool isCpuBusy = false;
-    std::shared_ptr<PCB> currentProcessInCpu;
+
 };
 
 #endif

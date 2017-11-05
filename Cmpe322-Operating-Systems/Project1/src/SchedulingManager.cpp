@@ -19,6 +19,7 @@ void SchedulingManager::simulate() {
     initializeArrivalQueue();
 
     //Execute the round robin.
+    executeRoundRobin();
 }
 
 //Initializes the processes and puts them in arrivalQueue.
@@ -49,17 +50,23 @@ void SchedulingManager::initializeArrivalQueue() {
 //Executes the round robin algorithm on ready queue.
 void SchedulingManager::executeRoundRobin() {
     //Put the arrived processes to the ready queue.
-    currentTime = 0;
-    nextClosestEventTime = arrivalQueue.at(0)->getArrivalTime();
-    while (isCpuBusy || !readyQueue.empty()) {
+    //currentTime = 0;
+    currentTime = arrivalQueue.at(0)->getArrivalTime();
+    nextClosestEventTime = std::numeric_limits<int>::max();
+    bool isFirstTime = true;
+    //putArrivedPCBToReadyQueue();
+    printQueue();
+    while (isCpuBusy || !readyQueue.empty() || isFirstTime) {
         putArrivedPCBToReadyQueue();
         getProcessOutOfCpu();
         takeProcessIntoCpu();
-        executeProcess();
+        executeInstruction();
 
         //Update the time.
         currentTime = nextClosestEventTime;
         nextClosestEventTime = std::numeric_limits<int>::max();
+        isFirstTime = false;
+
     }
 }
 
@@ -79,19 +86,45 @@ void SchedulingManager::printProcesses() {
 }
 
 void SchedulingManager::putArrivedPCBToReadyQueue() {
-    for (std::vector<std::shared_ptr<PCB>>::iterator it = arrivalQueue.begin(); it != arrivalQueue.end(); ++it) {
-        std::shared_ptr<PCB> process = it->get();
+    /*Deprecated iterator.
+     * for (std::vector<std::shared_ptr<PCB>>::iterator it = arrivalQueue.begin(); it != arrivalQueue.end(); it++) {
+        std::shared_ptr<PCB> process = *it;
         if (currentTime == process->getArrivalTime()) {
             readyQueue.push(process);
+            arrivalQueue.erase(it);
         }
+    }
+
+    for (std::vector<std::shared_ptr<PCB>>::iterator it = arrivalQueue.begin(); it != arrivalQueue.end(); it++) {
+        std::shared_ptr<PCB> process = *it;
         nextClosestEventTime = std::min(process->getArrivalTime(), nextClosestEventTime);
+    }*/
+    //Burdaki silme de uzunluk değiştiği için sıkıntılar olabilir girmesi gereken bi elemean girmeyebilir.
+    for(int i = 0;i<arrivalQueue.size();i++)
+    {
+        if (currentTime == arrivalQueue.at(i)->getArrivalTime()) {
+            readyQueue.push_back(arrivalQueue.at(i));//was push
+            arrivalQueue.erase(arrivalQueue.begin()+i);
+            i--; //Because we deleted an element
+        }
+    }
+    printQueue();
+    for(int i = 0;i<arrivalQueue.size();i++)
+    {
+        nextClosestEventTime = std::min(arrivalQueue.at(i)->getArrivalTime(), nextClosestEventTime);
     }
 }
 
-void SchedulingManager::executeProcess() {
-    remainingQuantumTime = quantum;
-    while (canExecuteNextInstruction()) {
-        remainingQuantumTime = quantum - currentProcessInCpu->getCurrentInstruction()->length;
+void SchedulingManager::executeInstruction() {
+    if (canExecuteNextInstruction()) {
+        std::string currentInstructionName1 = currentProcessInCpu->getCurrentInstruction()->name;
+        int currentInstructionLength1 = currentProcessInCpu->getCurrentInstruction()->length;
+        remainingQuantumTime = remainingQuantumTime - currentProcessInCpu->getCurrentInstruction()->length;
+        if (currentProcessInCpu->getCurrentInstruction()->name == "exit") {
+            finishedProcesses.push_back(currentProcessInCpu);
+            isCpuBusy = false;
+        }
+        nextClosestEventTime = std::min(currentTime + currentProcessInCpu->getCurrentInstruction()->length,nextClosestEventTime); // Update the current time.
         currentProcessInCpu->executeCurrentInstruction();
     }
 }
@@ -100,29 +133,33 @@ void SchedulingManager::takeProcessIntoCpu() {
 
     //If the cpu is not busy and there is a process waiting for cpu.
     if (!isCpuBusy && !readyQueue.empty()) {
+        remainingQuantumTime = quantum;
         currentProcessInCpu = readyQueue.front();
-        readyQueue.pop();       //Consume the element.
+        readyQueue.pop_front();       //Consume the element. //was pop
         isCpuBusy = true;
+        printQueue();
     }
 }
 
 void SchedulingManager::getProcessOutOfCpu() {
     if (isCpuBusy && !canExecuteNextInstruction()) {
         isCpuBusy = false;
-        readyQueue.push(currentProcessInCpu);
+        readyQueue.push_back(currentProcessInCpu);  //was push
+        printQueue();
     }
-
-    //TODO CONSIDER EXIT CASE.
 }
 
 bool SchedulingManager::canExecuteNextInstruction() {
+    return (isCpuBusy && currentProcessInCpu->getCurrentInstruction()->length <= remainingQuantumTime);
+}
 
-    //TODO Make this one line return.
-    if (isCpuBusy && currentProcessInCpu->getCurrentInstruction()->length <= remainingQuantumTime) {
-        return true;
+void SchedulingManager::printQueue() {
+    std::string processNames;
+    for(int i = 0;i<readyQueue.size();i++)
+    {
+        processNames += readyQueue.at(i)->getProcessName() + " - ";
     }
-
-    return false;
+    std::cout << currentTime << " : HEAD-" << processNames << "TAIL" <<std::endl;
 }
 
 
