@@ -52,9 +52,11 @@ void SchedulingManager::executeRoundRobin() {
     //Put the arrived processes to the ready queue.
     currentTime = 0;
     //currentTime = arrivalQueue.at(0)->getArrivalTime();
+    int processCount = arrivalQueue.size();
     nextClosestEventTime = std::numeric_limits<int>::max();
     printQueue();
-    while (isCpuBusy || !readyQueue.empty() || currentTime <= arrivalQueue.at(0)->getArrivalTime()) {
+    while (finishedProcesses.size() != processCount) {
+        //Execute discrete events.
         putArrivedPCBToReadyQueue();
         getProcessOutOfCpu();
         takeProcessIntoCpu();
@@ -64,6 +66,7 @@ void SchedulingManager::executeRoundRobin() {
         currentTime = nextClosestEventTime;
         nextClosestEventTime = std::numeric_limits<int>::max();
     }
+    printQueue();
 }
 
 void SchedulingManager::printProcesses() {
@@ -97,20 +100,19 @@ void SchedulingManager::putArrivedPCBToReadyQueue() {
         nextClosestEventTime = std::min(process->getArrivalTime(), nextClosestEventTime);
     }*/
     //Burdaki silme de uzunluk değiştiği için sıkıntılar olabilir girmesi gereken bi elemean girmeyebilir.
-    for(int i = 0;i<arrivalQueue.size();i++)
-    {
+    for (int i = 0; i < arrivalQueue.size(); i++) {
         if (currentTime == arrivalQueue.at(i)->getArrivalTime()) {
             readyQueue.push_back(arrivalQueue.at(i));//was push
             printQueue();
-            arrivalQueue.erase(arrivalQueue.begin()+i);
+            arrivalQueue.erase(arrivalQueue.begin() + i);
             i--; //Because we deleted an element
         }
     }
-    for(int i = 0;i<arrivalQueue.size();i++)
-    {
+    for (int i = 0; i < arrivalQueue.size(); i++) {
         nextClosestEventTime = std::min(arrivalQueue.at(i)->getArrivalTime(), nextClosestEventTime);
     }
 }
+
 /*
 void SchedulingManager::executeInstruction() {
     if (canExecuteNextInstruction()) { // Maybe this can be a while loop
@@ -130,7 +132,7 @@ void SchedulingManager::executeInstruction() {
 void SchedulingManager::executeInstruction() {
     int passedTime = 0;
     bool someTimePassed = false;
-    while(canExecuteNextInstruction()) { // Maybe this can be a while loop
+    while (canExecuteNextInstruction()) { // Maybe this can be a while loop
         someTimePassed = true;
         std::string currentInstructionName1 = currentProcessInCpu->getCurrentInstruction()->name;
         int currentInstructionLength1 = currentProcessInCpu->getCurrentInstruction()->length;
@@ -139,13 +141,13 @@ void SchedulingManager::executeInstruction() {
         if (currentProcessInCpu->getCurrentInstruction()->name == "exit") {
             finishedProcesses.push_back(currentProcessInCpu);
             isCpuBusy = false;
-        }else{
+        } else {
             currentProcessInCpu->executeCurrentInstruction();
         }
     }
-    if(someTimePassed){
+    if (someTimePassed) {
         cpuFinishTime = currentTime + passedTime;
-        nextClosestEventTime = std::min(cpuFinishTime,nextClosestEventTime);
+        nextClosestEventTime = std::min(cpuFinishTime, nextClosestEventTime);
     }
 }
 
@@ -166,8 +168,8 @@ void SchedulingManager::getProcessOutOfCpu() {
         isCpuBusy = false;
         readyQueue.push_back(currentProcessInCpu);  //was push
         printQueue();
-    }else{
-        nextClosestEventTime = std::min(cpuFinishTime,nextClosestEventTime);
+    } else if (isCpuBusy) {
+        nextClosestEventTime = std::min(cpuFinishTime, nextClosestEventTime);
     }
 }
 
@@ -177,11 +179,10 @@ bool SchedulingManager::canExecuteNextInstruction() {
 
 void SchedulingManager::printQueue() {
     std::string processNames;
-    for(int i = 0;i<readyQueue.size();i++)
-    {
+    for (int i = 0; i < readyQueue.size(); i++) {
         processNames += readyQueue.at(i)->getProcessName() + "-";
     }
-    std::cout << currentTime << " : HEAD-" << processNames << "TAIL" <<std::endl;
+    std::cout << currentTime << " : HEAD-" << processNames << "TAIL" << std::endl;
 }
 
 
