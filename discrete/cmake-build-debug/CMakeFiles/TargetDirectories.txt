@@ -1,3 +1,3 @@
-/home/gray/workspace/discrete/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/gray/workspace/discrete/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/gray/workspace/discrete/cmake-build-debug/CMakeFiles/discrete.dir
+/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/CMakeFiles/discrete.dir

@@ -53,8 +53,6 @@ private:
     int cpuFinishTime = 0;
     int nextClosestEventTime = 0;
     bool isCpuBusy = false;
-    std::vector<int> closestEventTimes;
-
 };
 
 #endif

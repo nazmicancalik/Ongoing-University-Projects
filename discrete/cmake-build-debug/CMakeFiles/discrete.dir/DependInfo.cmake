@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/gray/workspace/discrete/PCB.cpp" "/home/gray/workspace/discrete/cmake-build-debug/CMakeFiles/discrete.dir/PCB.cpp.o"
-  "/home/gray/workspace/discrete/SchedulingManager.cpp" "/home/gray/workspace/discrete/cmake-build-debug/CMakeFiles/discrete.dir/SchedulingManager.cpp.o"
-  "/home/gray/workspace/discrete/main.cpp" "/home/gray/workspace/discrete/cmake-build-debug/CMakeFiles/discrete.dir/main.cpp.o"
+  "/home/gray/workspace/Ongoing-University-Projects/discrete/PCB.cpp" "/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/CMakeFiles/discrete.dir/PCB.cpp.o"
+  "/home/gray/workspace/Ongoing-University-Projects/discrete/SchedulingManager.cpp" "/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/CMakeFiles/discrete.dir/SchedulingManager.cpp.o"
+  "/home/gray/workspace/Ongoing-University-Projects/discrete/main.cpp" "/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/CMakeFiles/discrete.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

@@ -43,10 +43,10 @@ RM = /home/gray/clion-2017.1.2/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/gray/workspace/discrete
+CMAKE_SOURCE_DIR = /home/gray/workspace/Ongoing-University-Projects/discrete
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/gray/workspace/discrete/cmake-build-debug
+CMAKE_BINARY_DIR = /home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/discrete.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/discrete.dir/flags.make
 
 CMakeFiles/discrete.dir/main.cpp.o: CMakeFiles/discrete.dir/flags.make
 CMakeFiles/discrete.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gray/workspace/discrete/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/discrete.dir/main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/discrete.dir/main.cpp.o -c /home/gray/workspace/discrete/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/discrete.dir/main.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/discrete.dir/main.cpp.o -c /home/gray/workspace/Ongoing-University-Projects/discrete/main.cpp
 
 CMakeFiles/discrete.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/discrete.dir/main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/gray/workspace/discrete/main.cpp > CMakeFiles/discrete.dir/main.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/gray/workspace/Ongoing-University-Projects/discrete/main.cpp > CMakeFiles/discrete.dir/main.cpp.i
 
 CMakeFiles/discrete.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/discrete.dir/main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/gray/workspace/discrete/main.cpp -o CMakeFiles/discrete.dir/main.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/gray/workspace/Ongoing-University-Projects/discrete/main.cpp -o CMakeFiles/discrete.dir/main.cpp.s
 
 CMakeFiles/discrete.dir/main.cpp.o.requires:
 
@@ -81,42 +81,18 @@ CMakeFiles/discrete.dir/main.cpp.o.provides: CMakeFiles/discrete.dir/main.cpp.o.
 CMakeFiles/discrete.dir/main.cpp.o.provides.build: CMakeFiles/discrete.dir/main.cpp.o
 
 
-CMakeFiles/discrete.dir/SchedulingManager.cpp.o: CMakeFiles/discrete.dir/flags.make
-CMakeFiles/discrete.dir/SchedulingManager.cpp.o: ../SchedulingManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gray/workspace/discrete/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/discrete.dir/SchedulingManager.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/discrete.dir/SchedulingManager.cpp.o -c /home/gray/workspace/discrete/SchedulingManager.cpp
-
-CMakeFiles/discrete.dir/SchedulingManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/discrete.dir/SchedulingManager.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/gray/workspace/discrete/SchedulingManager.cpp > CMakeFiles/discrete.dir/SchedulingManager.cpp.i
-
-CMakeFiles/discrete.dir/SchedulingManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/discrete.dir/SchedulingManager.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/gray/workspace/discrete/SchedulingManager.cpp -o CMakeFiles/discrete.dir/SchedulingManager.cpp.s
-
-CMakeFiles/discrete.dir/SchedulingManager.cpp.o.requires:
-
-.PHONY : CMakeFiles/discrete.dir/SchedulingManager.cpp.o.requires
-
-CMakeFiles/discrete.dir/SchedulingManager.cpp.o.provides: CMakeFiles/discrete.dir/SchedulingManager.cpp.o.requires
-	$(MAKE) -f CMakeFiles/discrete.dir/build.make CMakeFiles/discrete.dir/SchedulingManager.cpp.o.provides.build
-.PHONY : CMakeFiles/discrete.dir/SchedulingManager.cpp.o.provides
-
-CMakeFiles/discrete.dir/SchedulingManager.cpp.o.provides.build: CMakeFiles/discrete.dir/SchedulingManager.cpp.o
-
-
 CMakeFiles/discrete.dir/PCB.cpp.o: CMakeFiles/discrete.dir/flags.make
 CMakeFiles/discrete.dir/PCB.cpp.o: ../PCB.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gray/workspace/discrete/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/discrete.dir/PCB.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/discrete.dir/PCB.cpp.o -c /home/gray/workspace/discrete/PCB.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/discrete.dir/PCB.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/discrete.dir/PCB.cpp.o -c /home/gray/workspace/Ongoing-University-Projects/discrete/PCB.cpp
 
 CMakeFiles/discrete.dir/PCB.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/discrete.dir/PCB.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/gray/workspace/discrete/PCB.cpp > CMakeFiles/discrete.dir/PCB.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/gray/workspace/Ongoing-University-Projects/discrete/PCB.cpp > CMakeFiles/discrete.dir/PCB.cpp.i
 
 CMakeFiles/discrete.dir/PCB.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/discrete.dir/PCB.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/gray/workspace/discrete/PCB.cpp -o CMakeFiles/discrete.dir/PCB.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/gray/workspace/Ongoing-University-Projects/discrete/PCB.cpp -o CMakeFiles/discrete.dir/PCB.cpp.s
 
 CMakeFiles/discrete.dir/PCB.cpp.o.requires:
 
@@ -129,21 +105,45 @@ CMakeFiles/discrete.dir/PCB.cpp.o.provides: CMakeFiles/discrete.dir/PCB.cpp.o.re
 CMakeFiles/discrete.dir/PCB.cpp.o.provides.build: CMakeFiles/discrete.dir/PCB.cpp.o
 
 
+CMakeFiles/discrete.dir/SchedulingManager.cpp.o: CMakeFiles/discrete.dir/flags.make
+CMakeFiles/discrete.dir/SchedulingManager.cpp.o: ../SchedulingManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/discrete.dir/SchedulingManager.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/discrete.dir/SchedulingManager.cpp.o -c /home/gray/workspace/Ongoing-University-Projects/discrete/SchedulingManager.cpp
+
+CMakeFiles/discrete.dir/SchedulingManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/discrete.dir/SchedulingManager.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/gray/workspace/Ongoing-University-Projects/discrete/SchedulingManager.cpp > CMakeFiles/discrete.dir/SchedulingManager.cpp.i
+
+CMakeFiles/discrete.dir/SchedulingManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/discrete.dir/SchedulingManager.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/gray/workspace/Ongoing-University-Projects/discrete/SchedulingManager.cpp -o CMakeFiles/discrete.dir/SchedulingManager.cpp.s
+
+CMakeFiles/discrete.dir/SchedulingManager.cpp.o.requires:
+
+.PHONY : CMakeFiles/discrete.dir/SchedulingManager.cpp.o.requires
+
+CMakeFiles/discrete.dir/SchedulingManager.cpp.o.provides: CMakeFiles/discrete.dir/SchedulingManager.cpp.o.requires
+	$(MAKE) -f CMakeFiles/discrete.dir/build.make CMakeFiles/discrete.dir/SchedulingManager.cpp.o.provides.build
+.PHONY : CMakeFiles/discrete.dir/SchedulingManager.cpp.o.provides
+
+CMakeFiles/discrete.dir/SchedulingManager.cpp.o.provides.build: CMakeFiles/discrete.dir/SchedulingManager.cpp.o
+
+
 # Object files for target discrete
 discrete_OBJECTS = \
 "CMakeFiles/discrete.dir/main.cpp.o" \
-"CMakeFiles/discrete.dir/SchedulingManager.cpp.o" \
-"CMakeFiles/discrete.dir/PCB.cpp.o"
+"CMakeFiles/discrete.dir/PCB.cpp.o" \
+"CMakeFiles/discrete.dir/SchedulingManager.cpp.o"
 
 # External object files for target discrete
 discrete_EXTERNAL_OBJECTS =
 
 discrete: CMakeFiles/discrete.dir/main.cpp.o
-discrete: CMakeFiles/discrete.dir/SchedulingManager.cpp.o
 discrete: CMakeFiles/discrete.dir/PCB.cpp.o
+discrete: CMakeFiles/discrete.dir/SchedulingManager.cpp.o
 discrete: CMakeFiles/discrete.dir/build.make
 discrete: CMakeFiles/discrete.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gray/workspace/discrete/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable discrete"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable discrete"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/discrete.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -152,8 +152,8 @@ CMakeFiles/discrete.dir/build: discrete
 .PHONY : CMakeFiles/discrete.dir/build
 
 CMakeFiles/discrete.dir/requires: CMakeFiles/discrete.dir/main.cpp.o.requires
-CMakeFiles/discrete.dir/requires: CMakeFiles/discrete.dir/SchedulingManager.cpp.o.requires
 CMakeFiles/discrete.dir/requires: CMakeFiles/discrete.dir/PCB.cpp.o.requires
+CMakeFiles/discrete.dir/requires: CMakeFiles/discrete.dir/SchedulingManager.cpp.o.requires
 
 .PHONY : CMakeFiles/discrete.dir/requires
 
@@ -162,6 +162,6 @@ CMakeFiles/discrete.dir/clean:
 .PHONY : CMakeFiles/discrete.dir/clean
 
 CMakeFiles/discrete.dir/depend:
-	cd /home/gray/workspace/discrete/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/gray/workspace/discrete /home/gray/workspace/discrete /home/gray/workspace/discrete/cmake-build-debug /home/gray/workspace/discrete/cmake-build-debug /home/gray/workspace/discrete/cmake-build-debug/CMakeFiles/discrete.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/gray/workspace/Ongoing-University-Projects/discrete /home/gray/workspace/Ongoing-University-Projects/discrete /home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug /home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug /home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/CMakeFiles/discrete.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/discrete.dir/depend
 

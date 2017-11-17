@@ -1,1 +1,1 @@
-/usr/bin/c++   -g   CMakeFiles/discrete.dir/main.cpp.o CMakeFiles/discrete.dir/SchedulingManager.cpp.o CMakeFiles/discrete.dir/PCB.cpp.o  -o discrete 
+/usr/bin/c++   -g   CMakeFiles/discrete.dir/main.cpp.o CMakeFiles/discrete.dir/PCB.cpp.o CMakeFiles/discrete.dir/SchedulingManager.cpp.o  -o discrete 

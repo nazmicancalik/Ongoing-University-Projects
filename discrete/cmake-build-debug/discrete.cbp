@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/gray/workspace/discrete/cmake-build-debug"/>
+				<Option working_dir="/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/gray/workspace/discrete/cmake-build-debug"/>
+				<Option working_dir="/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/gray/workspace/discrete/cmake-build-debug"/>
+				<Option working_dir="/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="discrete">
-				<Option output="/home/gray/workspace/discrete/cmake-build-debug/discrete" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/gray/workspace/discrete/cmake-build-debug"/>
+				<Option output="/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/discrete" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -54,15 +54,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 discrete"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 discrete"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="discrete/fast">
-				<Option output="/home/gray/workspace/discrete/cmake-build-debug/discrete" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/gray/workspace/discrete/cmake-build-debug"/>
+				<Option output="/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/discrete" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -77,32 +77,32 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 discrete/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 discrete/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/gray/workspace/Ongoing-University-Projects/discrete/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/gray/workspace/discrete/IOManager.h">
+		<Unit filename="/home/gray/workspace/Ongoing-University-Projects/discrete/IOManager.h">
 			<Option target="discrete"/>
 		</Unit>
-		<Unit filename="/home/gray/workspace/discrete/PCB.cpp">
+		<Unit filename="/home/gray/workspace/Ongoing-University-Projects/discrete/PCB.cpp">
 			<Option target="discrete"/>
 		</Unit>
-		<Unit filename="/home/gray/workspace/discrete/PCB.h">
+		<Unit filename="/home/gray/workspace/Ongoing-University-Projects/discrete/PCB.h">
 			<Option target="discrete"/>
 		</Unit>
-		<Unit filename="/home/gray/workspace/discrete/SchedulingManager.cpp">
+		<Unit filename="/home/gray/workspace/Ongoing-University-Projects/discrete/SchedulingManager.cpp">
 			<Option target="discrete"/>
 		</Unit>
-		<Unit filename="/home/gray/workspace/discrete/SchedulingManager.h">
+		<Unit filename="/home/gray/workspace/Ongoing-University-Projects/discrete/SchedulingManager.h">
 			<Option target="discrete"/>
 		</Unit>
-		<Unit filename="/home/gray/workspace/discrete/main.cpp">
+		<Unit filename="/home/gray/workspace/Ongoing-University-Projects/discrete/main.cpp">
 			<Option target="discrete"/>
 		</Unit>
-		<Unit filename="/home/gray/workspace/discrete/CMakeLists.txt">
+		<Unit filename="/home/gray/workspace/Ongoing-University-Projects/discrete/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

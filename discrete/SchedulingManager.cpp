@@ -52,8 +52,8 @@ void SchedulingManager::executeRoundRobin() {
     //Put the arrived processes to the ready queue.
     currentTime = 0;
     int processCount = arrivalQueue.size();
-    //nextClosestEventTime = std::numeric_limits<int>::max();
-    //printQueue();
+    nextClosestEventTime = std::numeric_limits<int>::max();
+    printQueue();
     while (finishedProcesses.size() != processCount) {
         //Execute discrete events.
         putArrivedPCBToReadyQueue();
@@ -62,11 +62,8 @@ void SchedulingManager::executeRoundRobin() {
         executeInstruction();
 
         //Update the time.
-        std::sort(closestEventTimes.begin(),closestEventTimes.end());
-        //currentTime = nextClosestEventTime;
-        currentTime = closestEventTimes.at(0);
-        closestEventTimes.erase(closestEventTimes.begin());
-        //nextClosestEventTime = std::numeric_limits<int>::max();
+        currentTime = nextClosestEventTime;
+        nextClosestEventTime = std::numeric_limits<int>::max();
     }
     printQueue();
 }
@@ -87,25 +84,10 @@ void SchedulingManager::printProcesses() {
 }
 
 void SchedulingManager::putArrivedPCBToReadyQueue() {
-    /*Deprecated iterator.
-     * for (std::vector<std::shared_ptr<PCB>>::iterator it = arrivalQueue.begin(); it != arrivalQueue.end(); it++) {
-        std::shared_ptr<PCB> process = *it;
-        if (currentTime == process->getArrivalTime()) {
-            readyQueue.push(process);
-            arrivalQueue.erase(it);
-            //it--;
-        }
-    }
-
-    for (std::vector<std::shared_ptr<PCB>>::iterator it = arrivalQueue.begin(); it != arrivalQueue.end(); it++) {
-        std::shared_ptr<PCB> process = *it;
-        nextClosestEventTime = std::min(process->getArrivalTime(), nextClosestEventTime);
-    }*/
-    //Burdaki silme de uzunluk değiştiği için sıkıntılar olabilir girmesi gereken bi elemean girmeyebilir.
     for (int i = 0; i < arrivalQueue.size(); i++) {
         if (currentTime == arrivalQueue.at(i)->getArrivalTime()) {
             readyQueue.push_back(arrivalQueue.at(i));
-            //printQueue();
+            printQueue();
             arrivalQueue.erase(arrivalQueue.begin() + i);
 
             //Because we deleted an element
@@ -113,31 +95,14 @@ void SchedulingManager::putArrivedPCBToReadyQueue() {
         }
     }
     for (int i = 0; i < arrivalQueue.size(); i++) {
-        //nextClosestEventTime = std::min(arrivalQueue.at(i)->getArrivalTime(), nextClosestEventTime);
-        closestEventTimes.push_back(arrivalQueue.at(i)->getArrivalTime());
+        nextClosestEventTime = std::min(arrivalQueue.at(i)->getArrivalTime(), nextClosestEventTime);
     }
 }
 
-/*
-void SchedulingManager::executeInstruction() {
-    if (canExecuteNextInstruction()) { // Maybe this can be a while loop
-        std::string currentInstructionName1 = currentProcessInCpu->getCurrentInstruction()->name;
-        int currentInstructionLength1 = currentProcessInCpu->getCurrentInstruction()->length;
-        remainingQuantumTime = remainingQuantumTime - currentProcessInCpu->getCurrentInstruction()->length;
-        if (currentProcessInCpu->getCurrentInstruction()->name == "exit") {
-            finishedProcesses.push_back(currentProcessInCpu);
-            isCpuBusy = false;
-        }
-        nextClosestEventTime = std::min(currentTime + currentProcessInCpu->getCurrentInstruction()->length,nextClosestEventTime); // Update the current time.
-        currentProcessInCpu->executeCurrentInstruction();
-    }else{
-        nextClosestEventTime = std::min(currentTime + quantum,nextClosestEventTime);
-    }
-}*/
 void SchedulingManager::executeInstruction() {
     int passedTime = 0;
     bool someTimePassed = false;
-    while (canExecuteNextInstruction()) { // Maybe this can be a while loop
+    while (canExecuteNextInstruction()) {
         someTimePassed = true;
         std::string currentInstructionName1 = currentProcessInCpu->getCurrentInstruction()->name;
         int currentInstructionLength1 = currentProcessInCpu->getCurrentInstruction()->length;
@@ -153,7 +118,6 @@ void SchedulingManager::executeInstruction() {
     if (someTimePassed) {
         cpuFinishTime = currentTime + passedTime;
         nextClosestEventTime = std::min(cpuFinishTime, nextClosestEventTime);
-        closestEventTimes.push_back(cpuFinishTime);
     }
 }
 
@@ -163,7 +127,7 @@ void SchedulingManager::takeProcessIntoCpu() {
     if (!isCpuBusy && !readyQueue.empty()) {
         remainingQuantumTime = quantum;
         currentProcessInCpu = readyQueue.front();
-        //printQueue();
+        printQueue();
         readyQueue.pop_front();       //Consume the element. //was pop
         isCpuBusy = true;
     }
@@ -173,10 +137,9 @@ void SchedulingManager::getProcessOutOfCpu() {
     if (isCpuBusy && (currentTime == cpuFinishTime)) {
         isCpuBusy = false;
         readyQueue.push_back(currentProcessInCpu);  //was push
-        //printQueue();
+        printQueue();
     } else if (isCpuBusy) {
         nextClosestEventTime = std::min(cpuFinishTime, nextClosestEventTime);
-        closestEventTimes.push_back(cpuFinishTime);
     }
 }
 

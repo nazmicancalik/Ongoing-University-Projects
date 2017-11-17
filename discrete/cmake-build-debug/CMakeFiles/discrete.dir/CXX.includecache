@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/gray/workspace/discrete/IOManager.h
+/home/gray/workspace/Ongoing-University-Projects/discrete/IOManager.h
 iostream
 -
 fstream
@@ -18,13 +18,13 @@ vector
 memory
 -
 
-/home/gray/workspace/discrete/PCB.cpp
+/home/gray/workspace/Ongoing-University-Projects/discrete/PCB.cpp
 PCB.h
-/home/gray/workspace/discrete/PCB.h
+/home/gray/workspace/Ongoing-University-Projects/discrete/PCB.h
 
-/home/gray/workspace/discrete/PCB.h
+/home/gray/workspace/Ongoing-University-Projects/discrete/PCB.h
 IOManager.h
-/home/gray/workspace/discrete/IOManager.h
+/home/gray/workspace/Ongoing-University-Projects/discrete/IOManager.h
 iostream
 -
 vector
@@ -34,15 +34,15 @@ string
 memory
 -
 
-/home/gray/workspace/discrete/SchedulingManager.cpp
+/home/gray/workspace/Ongoing-University-Projects/discrete/SchedulingManager.cpp
 SchedulingManager.h
-/home/gray/workspace/discrete/SchedulingManager.h
+/home/gray/workspace/Ongoing-University-Projects/discrete/SchedulingManager.h
 
-/home/gray/workspace/discrete/SchedulingManager.h
+/home/gray/workspace/Ongoing-University-Projects/discrete/SchedulingManager.h
 PCB.h
-/home/gray/workspace/discrete/PCB.h
+/home/gray/workspace/Ongoing-University-Projects/discrete/PCB.h
 IOManager.h
-/home/gray/workspace/discrete/IOManager.h
+/home/gray/workspace/Ongoing-University-Projects/discrete/IOManager.h
 queue
 -
 memory
@@ -52,7 +52,7 @@ algorithm
 deque
 -
 
-/home/gray/workspace/discrete/main.cpp
+/home/gray/workspace/Ongoing-University-Projects/discrete/main.cpp
 SchedulingManager.h
-/home/gray/workspace/discrete/SchedulingManager.h
+/home/gray/workspace/Ongoing-University-Projects/discrete/SchedulingManager.h
 
