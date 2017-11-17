@@ -53,7 +53,7 @@ void SchedulingManager::executeRoundRobin() {
     currentTime = 0;
     int processCount = arrivalQueue.size();
     nextClosestEventTime = std::numeric_limits<int>::max();
-    printQueue();
+
     while (finishedProcesses.size() != processCount) {
         //Execute discrete events.
         putArrivedPCBToReadyQueue();
@@ -65,31 +65,13 @@ void SchedulingManager::executeRoundRobin() {
         currentTime = nextClosestEventTime;
         nextClosestEventTime = std::numeric_limits<int>::max();
     }
-    //printQueue();
-}
-
-void SchedulingManager::printProcesses() {
-    for (int i = 0; i < arrivalQueue.size(); i++) {
-        std::shared_ptr<PCB> process = arrivalQueue.at(i);
-        std::cout << "Name of the process is: " << process->getProcessName() << "\n"
-                  << "The instruction file of it is: " << process->getInstructionFileName()
-                  << std::endl;
-        for (int j = 0; j < process->getInstructions()->size(); j++) {
-            std::cout << "Name of the " << j << " instruction is: " << process->getInstructions()->at(j).name
-                      << std::endl;
-            std::cout << "Length of the " << j << " instruction is: " << process->getInstructions()->at(j).length
-                      << std::endl;
-        }
-    }
 }
 
 void SchedulingManager::putArrivedPCBToReadyQueue() {
     for (int i = 0; i < arrivalQueue.size(); i++) {
         if (currentTime == arrivalQueue.at(i)->getArrivalTime()) {
             readyQueue.push_back(arrivalQueue.at(i));
-            printQueue();
             arrivalQueue.erase(arrivalQueue.begin() + i);
-
             //Because we deleted an element
             i--;
         }
@@ -107,8 +89,6 @@ void SchedulingManager::executeInstruction() {
             break;
         }
         someTimePassed = true;
-        std::string currentInstructionName1 = currentProcessInCpu->getCurrentInstruction()->name;
-        int currentInstructionLength1 = currentProcessInCpu->getCurrentInstruction()->length;
         remainingQuantumTime = remainingQuantumTime - currentProcessInCpu->getCurrentInstruction()->length;
         passedTime += currentProcessInCpu->getCurrentInstruction()->length;
         if (currentProcessInCpu->getCurrentInstruction()->name == "exit") {
@@ -140,19 +120,20 @@ void SchedulingManager::getProcessOutOfCpu() {
         if(currentProcessInCpu->getFinishTime() == currentTime){
             finishedProcesses.push_back(currentProcessInCpu);
             isCpuBusy = false;
-            printQueue();
+
+            //Only for printing the last process finished. Empty Queue.
+            if(readyQueue.empty() && arrivalQueue.empty()){
+                printQueue();
+            }
         }
     }
     if (isCpuBusy && (currentTime == cpuFinishTime)) {
         isCpuBusy = false;
-        readyQueue.push_back(currentProcessInCpu);  //was push
-        printQueue();
+        readyQueue.push_back(currentProcessInCpu);
+
     } else if (isCpuBusy) {
         nextClosestEventTime = std::min(cpuFinishTime, nextClosestEventTime);
-    } /*else if (isSomeProcessFinished){
-        nextClosestEventTime = std::min(cpuFinishTime, nextClosestEventTime);
-        isSomeProcessFinished = false;
-    }*/
+    }
 }
 
 bool SchedulingManager::canExecuteNextInstruction() {
@@ -164,7 +145,7 @@ void SchedulingManager::printQueue() {
     for (int i = 0; i < readyQueue.size(); i++) {
         processNames += readyQueue.at(i)->getProcessName() + "-";
     }
-    std::cout << currentTime << " : HEAD-" << processNames << "TAIL" << std::endl;
+    std::cout << currentTime << "::HEAD-" << processNames << "TAIL" << std::endl;
 }
 
 

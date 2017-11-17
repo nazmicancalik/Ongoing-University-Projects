@@ -29,11 +29,6 @@ void PCB::initializeInstructions() {
         //Push the instruction
         instructions.push_back(instruction1);
     }
-    /*Duruma göre sil
-    instruction finishInstruction;
-    finishInstruction.name = "finish";
-    finishInstruction.length = 0;
-    instructions.push_back(finishInstruction);*/
 }
 
 //Getter for process name.

@@ -23,8 +23,6 @@ public:
 
     void initializeArrivalQueue();
 
-    void printProcesses();
-
     void executeRoundRobin();
 
     void simulate();
@@ -53,7 +51,6 @@ private:
     int cpuFinishTime = 0;
     int nextClosestEventTime = 0;
     bool isCpuBusy = false;
-    bool isSomeProcessFinished = false;
 };
 
 #endif
