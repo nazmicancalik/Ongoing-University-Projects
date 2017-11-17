@@ -29,6 +29,11 @@ void PCB::initializeInstructions() {
         //Push the instruction
         instructions.push_back(instruction1);
     }
+    /*Duruma göre sil
+    instruction finishInstruction;
+    finishInstruction.name = "finish";
+    finishInstruction.length = 0;
+    instructions.push_back(finishInstruction);*/
 }
 
 //Getter for process name.
@@ -56,4 +61,12 @@ void PCB::executeCurrentInstruction() {
 
 instruction *PCB::getCurrentInstruction() {
     return &instructions.at(currentInstructionNumber);
+}
+
+int PCB::getFinishTime() {
+    return finishTime;
+}
+
+void PCB::setFinishTime(int aFinishTime) {
+    finishTime = aFinishTime;
 }

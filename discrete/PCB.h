@@ -7,6 +7,7 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include <limits>
 
 struct instruction {
     std::string name;
@@ -33,6 +34,10 @@ public:
 
     int getArrivalTime();
 
+    int getFinishTime();
+
+    void setFinishTime(int aFinishTime);
+
 private:
     void initializeInstructions();
 
@@ -41,6 +46,7 @@ private:
     std::vector<instruction> instructions;
     int currentInstructionNumber;
     int arrivalTime;
+    int finishTime = std::numeric_limits<int>::max();
 };
 
 #endif

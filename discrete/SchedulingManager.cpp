@@ -65,7 +65,7 @@ void SchedulingManager::executeRoundRobin() {
         currentTime = nextClosestEventTime;
         nextClosestEventTime = std::numeric_limits<int>::max();
     }
-    printQueue();
+    //printQueue();
 }
 
 void SchedulingManager::printProcesses() {
@@ -103,15 +103,17 @@ void SchedulingManager::executeInstruction() {
     int passedTime = 0;
     bool someTimePassed = false;
     while (canExecuteNextInstruction()) {
+        if(currentProcessInCpu->getFinishTime() != std::numeric_limits<int>::max()){
+            break;
+        }
         someTimePassed = true;
         std::string currentInstructionName1 = currentProcessInCpu->getCurrentInstruction()->name;
         int currentInstructionLength1 = currentProcessInCpu->getCurrentInstruction()->length;
         remainingQuantumTime = remainingQuantumTime - currentProcessInCpu->getCurrentInstruction()->length;
         passedTime += currentProcessInCpu->getCurrentInstruction()->length;
         if (currentProcessInCpu->getCurrentInstruction()->name == "exit") {
-            finishedProcesses.push_back(currentProcessInCpu);
-            isCpuBusy = false;
-        } else {
+            currentProcessInCpu->setFinishTime(currentTime+passedTime);
+        } else{
             currentProcessInCpu->executeCurrentInstruction();
         }
     }
@@ -134,13 +136,23 @@ void SchedulingManager::takeProcessIntoCpu() {
 }
 
 void SchedulingManager::getProcessOutOfCpu() {
+    if(isCpuBusy){
+        if(currentProcessInCpu->getFinishTime() == currentTime){
+            finishedProcesses.push_back(currentProcessInCpu);
+            isCpuBusy = false;
+            printQueue();
+        }
+    }
     if (isCpuBusy && (currentTime == cpuFinishTime)) {
         isCpuBusy = false;
         readyQueue.push_back(currentProcessInCpu);  //was push
         printQueue();
     } else if (isCpuBusy) {
         nextClosestEventTime = std::min(cpuFinishTime, nextClosestEventTime);
-    }
+    } /*else if (isSomeProcessFinished){
+        nextClosestEventTime = std::min(cpuFinishTime, nextClosestEventTime);
+        isSomeProcessFinished = false;
+    }*/
 }
 
 bool SchedulingManager::canExecuteNextInstruction() {
