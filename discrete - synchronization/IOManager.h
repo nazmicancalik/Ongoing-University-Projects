@@ -10,16 +10,15 @@
 namespace IOManager {
 
 //Writes to the file.
-    static void write(const std::string fileName, std::string line) {
+    inline void write(const std::string fileName, std::string line) {
         std::ofstream fileOperator(fileName, std::ios_base::app);
-        fileOperator << line << "\n";
+        fileOperator << line;
         fileOperator.close();
     }
 
     inline std::shared_ptr<std::vector<std::string>> readTokens(std::string fileName) {
         std::shared_ptr<std::vector<std::string>> tokens =
                 std::make_shared<std::vector<std::string>>(std::vector<std::string>());
-        std::string fullFilePath = "/home/gray/workspace/discrete/input/" + fileName;
         std::ifstream fileOperator(fileName);
 
         while (!fileOperator.eof()) {
