@@ -24,6 +24,7 @@ namespace IOManager {
         while (!fileOperator.eof()) {
             std::string line;
             fileOperator >> line;
+            //tokens->get()->push_back(line);
             tokens->push_back(line);
         }
 

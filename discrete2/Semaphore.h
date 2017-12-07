@@ -6,24 +6,35 @@
 #define DISCRETE2_SEMAPHORE_H
 
 #include <vector>
-#include <bits/shared_ptr.h>
+#include <memory>
+#include <deque>
 #include "PCB.h"
 
 class Semaphore {
 public:
     Semaphore();
+
     Semaphore(int anIndex);
+
     ~Semaphore();
 
     void appendProcess(std::shared_ptr<PCB> aProcess);
-    void wait_S();
+
     void signal_S();
+
+    void wait_S();
+
+    int getIndex();
+
+    int getValue();
+
+    std::shared_ptr<std::deque<std::shared_ptr<PCB>>> getSemaphoreQueue();
 
 private:
     int index;
     int value;  // Semaphore value
 
-    std::vector<std::shared_ptr<PCB>> semaphore_queue;
+    std::deque<std::shared_ptr<PCB>> semaphore_queue;
 };
 
 #endif //DISCRETE2_SEMAPHORE_H

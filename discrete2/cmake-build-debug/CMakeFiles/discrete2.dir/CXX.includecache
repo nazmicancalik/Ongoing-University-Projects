@@ -45,6 +45,8 @@ PCB.h
 /home/gray/workspace/Ongoing-University-Projects/discrete2/PCB.h
 IOManager.h
 /home/gray/workspace/Ongoing-University-Projects/discrete2/IOManager.h
+Semaphore.h
+/home/gray/workspace/Ongoing-University-Projects/discrete2/Semaphore.h
 queue
 -
 memory
@@ -53,6 +55,20 @@ algorithm
 -
 deque
 -
+
+/home/gray/workspace/Ongoing-University-Projects/discrete2/Semaphore.cpp
+Semaphore.h
+/home/gray/workspace/Ongoing-University-Projects/discrete2/Semaphore.h
+
+/home/gray/workspace/Ongoing-University-Projects/discrete2/Semaphore.h
+vector
+-
+memory
+-
+deque
+-
+PCB.h
+/home/gray/workspace/Ongoing-University-Projects/discrete2/PCB.h
 
 /home/gray/workspace/Ongoing-University-Projects/discrete2/main.cpp
 SchedulingManager.h

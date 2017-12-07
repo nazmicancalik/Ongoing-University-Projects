@@ -24,6 +24,9 @@ void SchedulingManager::simulate()
     //Create and initialize the processes along with their instructions.
     initializeArrivalQueue();
 
+    //Initialize Semaphores
+    initializeSemaphores();
+
     //Execute the round robin.
     executeRoundRobin();
 }
@@ -109,6 +112,23 @@ void SchedulingManager::executeInstruction()
     bool someTimePassed = false;
     while (canExecuteNextInstruction())
     {
+
+        //If the instruction is Wait.
+        if(currentProcessInCpu->getCurrentInstruction()->name.substr(0,6) == "waitS_"){
+            int index = stoi(currentProcessInCpu->getCurrentInstruction()->name.substr(6,1));
+            wait_S(index,currentProcessInCpu);
+
+            //If the process needs to be sent to semaphore queue.
+            if(semaphores[index]->getValue() != 0){
+                break;
+            }
+        }
+        //If the instruction is Sign.
+        else if(currentProcessInCpu->getCurrentInstruction()->name.substr(0,6) == "signS_"){
+            int index = stoi(currentProcessInCpu->getCurrentInstruction()->name.substr(6,1));
+            sign_S(index,currentProcessInCpu);
+        }
+
         //If the process in the cpu is executing its last instruction.
         if (currentProcessInCpu->getFinishTime() != std::numeric_limits<int>::max())
         {
@@ -201,4 +221,28 @@ void SchedulingManager::printQueue()
     }
 
     IOManager::write(outputFile,"TAIL\n");
+}
+
+void SchedulingManager::wait_S(int index, std::shared_ptr<PCB> aProcess) {
+    if (semaphores[index]->getValue() <= 0){
+
+        //Append the process into semaphore queue.
+        semaphores[index]->appendProcess(aProcess);
+
+        //Pop the process from the ready queue. It has to wait in semaphore queue.
+        readyQueue.pop_front();
+    }
+
+    // In each case decrement the semaphore value.
+    semaphores[index]->wait_S();
+}
+
+void SchedulingManager::sign_S(int index, std::shared_ptr<PCB> aProcess) {
+    semaphores[index]->signal_S();
+    if(!(semaphores[index]->getSemaphoreQueue().get()->empty())){
+
+        //Put the process back to ready queue.
+        readyQueue.push_back(semaphores[index]->getSemaphoreQueue()->front());
+        semaphores[index]->getSemaphoreQueue()->pop_front();
+    }
 }

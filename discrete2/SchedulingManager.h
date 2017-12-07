@@ -18,7 +18,7 @@ class SchedulingManager {
 public:
     SchedulingManager();
 
-    SchedulingManager(std::string &processFile,std::string &outputFile);
+    SchedulingManager(std::string &processFile, std::string &outputFile);
 
     ~SchedulingManager();
 
@@ -42,6 +42,10 @@ private:
     void printQueue();
 
     void initializeSemaphores();
+
+    void wait_S(int index, std::shared_ptr<PCB> aProcess);
+
+    void sign_S(int index, std::shared_ptr<PCB> aProcess);
 
     std::string processFile;
     std::string outputFile;

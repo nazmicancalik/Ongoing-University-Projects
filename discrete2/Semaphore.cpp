@@ -27,3 +27,15 @@ void Semaphore::wait_S() {
 void Semaphore::signal_S() {
     value++;
 }
+
+int Semaphore::getIndex() {
+    return index;
+}
+
+int Semaphore::getValue() {
+    return value;
+}
+
+std::shared_ptr<std::deque<std::shared_ptr<PCB>>> Semaphore::getSemaphoreQueue() {
+    return std::shared_ptr<std::deque<std::shared_ptr<PCB>>>(&semaphore_queue);
+}

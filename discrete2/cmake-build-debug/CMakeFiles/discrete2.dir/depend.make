@@ -9,9 +9,16 @@ CMakeFiles/discrete2.dir/SchedulingManager.cpp.o: ../IOManager.h
 CMakeFiles/discrete2.dir/SchedulingManager.cpp.o: ../PCB.h
 CMakeFiles/discrete2.dir/SchedulingManager.cpp.o: ../SchedulingManager.cpp
 CMakeFiles/discrete2.dir/SchedulingManager.cpp.o: ../SchedulingManager.h
+CMakeFiles/discrete2.dir/SchedulingManager.cpp.o: ../Semaphore.h
+
+CMakeFiles/discrete2.dir/Semaphore.cpp.o: ../IOManager.h
+CMakeFiles/discrete2.dir/Semaphore.cpp.o: ../PCB.h
+CMakeFiles/discrete2.dir/Semaphore.cpp.o: ../Semaphore.cpp
+CMakeFiles/discrete2.dir/Semaphore.cpp.o: ../Semaphore.h
 
 CMakeFiles/discrete2.dir/main.cpp.o: ../IOManager.h
 CMakeFiles/discrete2.dir/main.cpp.o: ../PCB.h
 CMakeFiles/discrete2.dir/main.cpp.o: ../SchedulingManager.h
+CMakeFiles/discrete2.dir/main.cpp.o: ../Semaphore.h
 CMakeFiles/discrete2.dir/main.cpp.o: ../main.cpp
 

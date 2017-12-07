@@ -10,8 +10,15 @@ CMakeFiles/discrete2.dir/SchedulingManager.cpp.o
  /home/gray/workspace/Ongoing-University-Projects/discrete2/PCB.h
  /home/gray/workspace/Ongoing-University-Projects/discrete2/SchedulingManager.cpp
  /home/gray/workspace/Ongoing-University-Projects/discrete2/SchedulingManager.h
+ /home/gray/workspace/Ongoing-University-Projects/discrete2/Semaphore.h
+CMakeFiles/discrete2.dir/Semaphore.cpp.o
+ /home/gray/workspace/Ongoing-University-Projects/discrete2/IOManager.h
+ /home/gray/workspace/Ongoing-University-Projects/discrete2/PCB.h
+ /home/gray/workspace/Ongoing-University-Projects/discrete2/Semaphore.cpp
+ /home/gray/workspace/Ongoing-University-Projects/discrete2/Semaphore.h
 CMakeFiles/discrete2.dir/main.cpp.o
  /home/gray/workspace/Ongoing-University-Projects/discrete2/IOManager.h
  /home/gray/workspace/Ongoing-University-Projects/discrete2/PCB.h
  /home/gray/workspace/Ongoing-University-Projects/discrete2/SchedulingManager.h
+ /home/gray/workspace/Ongoing-University-Projects/discrete2/Semaphore.h
  /home/gray/workspace/Ongoing-University-Projects/discrete2/main.cpp
