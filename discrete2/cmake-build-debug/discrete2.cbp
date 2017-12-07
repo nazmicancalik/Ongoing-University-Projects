@@ -84,6 +84,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/gray/workspace/Ongoing-University-Projects/discrete2/1.h">
+			<Option target="discrete2"/>
+		</Unit>
 		<Unit filename="/home/gray/workspace/Ongoing-University-Projects/discrete2/IOManager.h">
 			<Option target="discrete2"/>
 		</Unit>
@@ -97,6 +100,12 @@
 			<Option target="discrete2"/>
 		</Unit>
 		<Unit filename="/home/gray/workspace/Ongoing-University-Projects/discrete2/SchedulingManager.h">
+			<Option target="discrete2"/>
+		</Unit>
+		<Unit filename="/home/gray/workspace/Ongoing-University-Projects/discrete2/Semaphore.cpp">
+			<Option target="discrete2"/>
+		</Unit>
+		<Unit filename="/home/gray/workspace/Ongoing-University-Projects/discrete2/Semaphore.h">
 			<Option target="discrete2"/>
 		</Unit>
 		<Unit filename="/home/gray/workspace/Ongoing-University-Projects/discrete2/main.cpp">

@@ -177,6 +177,33 @@ SchedulingManager.cpp.s:
 	$(MAKE) -f CMakeFiles/discrete2.dir/build.make CMakeFiles/discrete2.dir/SchedulingManager.cpp.s
 .PHONY : SchedulingManager.cpp.s
 
+Semaphore.o: Semaphore.cpp.o
+
+.PHONY : Semaphore.o
+
+# target to build an object file
+Semaphore.cpp.o:
+	$(MAKE) -f CMakeFiles/discrete2.dir/build.make CMakeFiles/discrete2.dir/Semaphore.cpp.o
+.PHONY : Semaphore.cpp.o
+
+Semaphore.i: Semaphore.cpp.i
+
+.PHONY : Semaphore.i
+
+# target to preprocess a source file
+Semaphore.cpp.i:
+	$(MAKE) -f CMakeFiles/discrete2.dir/build.make CMakeFiles/discrete2.dir/Semaphore.cpp.i
+.PHONY : Semaphore.cpp.i
+
+Semaphore.s: Semaphore.cpp.s
+
+.PHONY : Semaphore.s
+
+# target to generate assembly for a file
+Semaphore.cpp.s:
+	$(MAKE) -f CMakeFiles/discrete2.dir/build.make CMakeFiles/discrete2.dir/Semaphore.cpp.s
+.PHONY : Semaphore.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -219,6 +246,9 @@ help:
 	@echo "... SchedulingManager.o"
 	@echo "... SchedulingManager.i"
 	@echo "... SchedulingManager.s"
+	@echo "... Semaphore.o"
+	@echo "... Semaphore.i"
+	@echo "... Semaphore.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

@@ -9,6 +9,6 @@ set(SOURCE_FILES
         PCB.cpp
         PCB.h
         SchedulingManager.cpp
-        SchedulingManager.h)
+        SchedulingManager.h 1.h Semaphore.cpp Semaphore.h)
 
 add_executable(discrete2 ${SOURCE_FILES})

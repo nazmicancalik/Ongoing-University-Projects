@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/discrete2.dir/main.cpp.o"
   "CMakeFiles/discrete2.dir/PCB.cpp.o"
   "CMakeFiles/discrete2.dir/SchedulingManager.cpp.o"
+  "CMakeFiles/discrete2.dir/Semaphore.cpp.o"
   "discrete2.pdb"
   "discrete2"
 )

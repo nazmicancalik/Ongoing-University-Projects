@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/gray/workspace/Ongoing-University-Projects/discrete2/PCB.cpp" "/home/gray/workspace/Ongoing-University-Projects/discrete2/cmake-build-debug/CMakeFiles/discrete2.dir/PCB.cpp.o"
   "/home/gray/workspace/Ongoing-University-Projects/discrete2/SchedulingManager.cpp" "/home/gray/workspace/Ongoing-University-Projects/discrete2/cmake-build-debug/CMakeFiles/discrete2.dir/SchedulingManager.cpp.o"
+  "/home/gray/workspace/Ongoing-University-Projects/discrete2/Semaphore.cpp" "/home/gray/workspace/Ongoing-University-Projects/discrete2/cmake-build-debug/CMakeFiles/discrete2.dir/Semaphore.cpp.o"
   "/home/gray/workspace/Ongoing-University-Projects/discrete2/main.cpp" "/home/gray/workspace/Ongoing-University-Projects/discrete2/cmake-build-debug/CMakeFiles/discrete2.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
