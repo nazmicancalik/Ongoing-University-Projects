@@ -28,6 +28,15 @@ void SchedulingManager::simulate()
     executeRoundRobin();
 }
 
+//Initializes Semaphores.
+void SchedulingManager::initializeSemaphores() {
+    for(int i=0; i < 10; i++){
+        std::shared_ptr<Semaphore> semaphore =
+                std::make_shared<Semaphore>(Semaphore(i));
+        semaphores.push_back(semaphore);
+    }
+}
+
 //Initializes the processes and puts them in arrivalQueue.
 void SchedulingManager::initializeArrivalQueue()
 {

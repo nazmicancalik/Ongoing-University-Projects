@@ -7,6 +7,7 @@
 
 #include "PCB.h"
 #include "IOManager.h"
+#include "Semaphore.h"
 #include <queue>
 #include <memory>
 #include <algorithm>
@@ -40,11 +41,14 @@ private:
 
     void printQueue();
 
+    void initializeSemaphores();
+
     std::string processFile;
     std::string outputFile;
     std::vector<std::shared_ptr<PCB>> arrivalQueue;
     std::deque<std::shared_ptr<PCB>> readyQueue;
     std::vector<std::shared_ptr<PCB>> finishedProcesses;
+    std::vector<std::shared_ptr<Semaphore>> semaphores;
     std::shared_ptr<PCB> currentProcessInCpu;
     int quantum = 100;
     int remainingQuantumTime = 100;
