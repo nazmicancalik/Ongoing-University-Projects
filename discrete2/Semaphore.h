@@ -28,7 +28,7 @@ public:
 
     int getValue();
 
-    std::shared_ptr<std::deque<std::shared_ptr<PCB>>> getSemaphoreQueue();
+    std::deque<std::shared_ptr<PCB>>* getSemaphoreQueue();
 
 private:
     int index;

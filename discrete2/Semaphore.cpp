@@ -36,6 +36,7 @@ int Semaphore::getValue() {
     return value;
 }
 
-std::shared_ptr<std::deque<std::shared_ptr<PCB>>> Semaphore::getSemaphoreQueue() {
-    return std::shared_ptr<std::deque<std::shared_ptr<PCB>>>(&semaphore_queue);
+//Problem is here. When I try to assign a shared_ptr to a statically allocated vector.
+std::deque<std::shared_ptr<PCB>>* Semaphore::getSemaphoreQueue() {
+    return &semaphore_queue;
 }

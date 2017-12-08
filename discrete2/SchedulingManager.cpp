@@ -52,8 +52,9 @@ void SchedulingManager::initializeArrivalQueue()
         //Convert the arrival time to integer.
         int arrivalTime = std::stoi(tokens->at(i + 2));
         //Create a shared pointer to the newly created object.
+        std::string ins_file_name = "/home/gray/workspace/Ongoing-University-Projects/discrete2/" + tokens->at(i + 1);
         std::shared_ptr<PCB> process =
-            std::make_shared<PCB>(PCB(tokens->at(i), tokens->at(i + 1), arrivalTime));
+            std::make_shared<PCB>(PCB(tokens->at(i),ins_file_name, arrivalTime));
         //Push to arrival queue.
         arrivalQueue.push_back(process);
     }
@@ -114,6 +115,8 @@ void SchedulingManager::executeInstruction()
     {
 
         //If the instruction is Wait.
+        std::string instruction_name = currentProcessInCpu->getCurrentInstruction()->name;
+        int inst_length = currentProcessInCpu->getCurrentInstruction()->length;
         if(currentProcessInCpu->getCurrentInstruction()->name.substr(0,6) == "waitS_"){
             int index = stoi(currentProcessInCpu->getCurrentInstruction()->name.substr(6,1));
             wait_S(index,currentProcessInCpu);
@@ -210,17 +213,21 @@ void SchedulingManager::printQueue()
 {
 
     IOManager::write(outputFile,std::to_string(currentTime));
+    std::cout << currentTime;
     IOManager::write(outputFile,"::HEAD-");
+    std::cout << "::HEAD-";
     std::string processNames;
     for (int i = 0; i < readyQueue.size(); i++)
     {
         IOManager::write(outputFile,readyQueue.at(i)->getProcessName());
+        std::cout << readyQueue.at(i)->getProcessName();
         IOManager::write(outputFile,"-");
-
+        std::cout << "-";
         processNames += readyQueue.at(i)->getProcessName() + "-";
     }
 
     IOManager::write(outputFile,"TAIL\n");
+    std::cout << "TAIL\n";
 }
 
 void SchedulingManager::wait_S(int index, std::shared_ptr<PCB> aProcess) {
@@ -230,7 +237,8 @@ void SchedulingManager::wait_S(int index, std::shared_ptr<PCB> aProcess) {
         semaphores[index]->appendProcess(aProcess);
 
         //Pop the process from the ready queue. It has to wait in semaphore queue.
-        readyQueue.pop_front();
+        //Bunu commentledim çünkü zaten bu adam cpu da ready queue da değil.
+        //readyQueue.pop_front();
     }
 
     // In each case decrement the semaphore value.
@@ -239,7 +247,7 @@ void SchedulingManager::wait_S(int index, std::shared_ptr<PCB> aProcess) {
 
 void SchedulingManager::sign_S(int index, std::shared_ptr<PCB> aProcess) {
     semaphores[index]->signal_S();
-    if(!(semaphores[index]->getSemaphoreQueue().get()->empty())){
+    if(!(semaphores[index]->getSemaphoreQueue()->empty())){
 
         //Put the process back to ready queue.
         readyQueue.push_back(semaphores[index]->getSemaphoreQueue()->front());
