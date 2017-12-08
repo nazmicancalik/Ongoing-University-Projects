@@ -38,6 +38,8 @@ public:
 
     void setFinishTime(int aFinishTime);
 
+    bool shouldEnterSemaphoreQueue = false;
+
 private:
     void initializeInstructions();
 
@@ -47,6 +49,7 @@ private:
     int currentInstructionNumber;
     int arrivalTime;
     int finishTime = std::numeric_limits<int>::max();
+
 };
 
 #endif

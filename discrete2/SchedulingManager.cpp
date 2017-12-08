@@ -111,7 +111,7 @@ void SchedulingManager::executeInstruction()
 {
     int passedTime = 0;
     bool someTimePassed = false;
-    while (canExecuteNextInstruction())
+    while (canExecuteNextInstruction() && !(currentProcessInCpu->shouldEnterSemaphoreQueue))
     {
 
         //If the instruction is Wait.
@@ -132,6 +132,11 @@ void SchedulingManager::executeInstruction()
 
             //If the process needs to be sent to semaphore queue.
             if(semaphores[index]->getValue() != 0){
+                //Make it enter semaphore queue. Actually prevent it from entering ready queue again.
+                currentProcessInCpu->shouldEnterSemaphoreQueue = true;
+
+                //In any ways we have to execute the signs. We have executed it.
+                currentProcessInCpu->executeCurrentInstruction();
                 break;
             }
         }
@@ -212,7 +217,11 @@ void SchedulingManager::getProcessOutOfCpu()
     if (isCpuBusy && (currentTime == cpuFinishTime))
     {
         isCpuBusy = false;
-        readyQueue.push_back(currentProcessInCpu);
+        //I need to differentiate between processes that are leaving to the semaphore queue.(Done) But also need to find a
+        //way to print these values at the correct time which is 30 later. TODO
+        if(!(currentProcessInCpu->shouldEnterSemaphoreQueue)){
+            readyQueue.push_back(currentProcessInCpu);
+        }
     }
     else if (isCpuBusy)
     {
@@ -267,6 +276,10 @@ void SchedulingManager::sign_S(int index, std::shared_ptr<PCB> aProcess) {
     semaphores[index]->signal_S();
     if(!(semaphores[index]->getSemaphoreQueue()->empty())){
 
+
+        // Restart everything for this process again. If we delete this it wont execute inst. because
+        // of the while condition.
+        semaphores[index]->getSemaphoreQueue()->front()->shouldEnterSemaphoreQueue = false;
         //Put the process back to ready queue.
         readyQueue.push_back(semaphores[index]->getSemaphoreQueue()->front());
         semaphores[index]->getSemaphoreQueue()->pop_front();
