@@ -30,6 +30,8 @@ public:
 
     std::deque<std::shared_ptr<PCB>>* getSemaphoreQueue();
 
+    void printSemaphoreQueue();
+
 private:
     int index;
     int value;  // Semaphore value

@@ -119,7 +119,16 @@ void SchedulingManager::executeInstruction()
         int inst_length = currentProcessInCpu->getCurrentInstruction()->length;
         if(currentProcessInCpu->getCurrentInstruction()->name.substr(0,6) == "waitS_"){
             int index = stoi(currentProcessInCpu->getCurrentInstruction()->name.substr(6,1));
+
+            //For debug
+            std::cout << "Before wait_S \n";
+            printSemaphoreQueues();
+
             wait_S(index,currentProcessInCpu);
+
+            //For debug
+            std::cout<< "After wait_S \n";
+            printSemaphoreQueues();
 
             //If the process needs to be sent to semaphore queue.
             if(semaphores[index]->getValue() != 0){
@@ -129,7 +138,16 @@ void SchedulingManager::executeInstruction()
         //If the instruction is Sign.
         else if(currentProcessInCpu->getCurrentInstruction()->name.substr(0,6) == "signS_"){
             int index = stoi(currentProcessInCpu->getCurrentInstruction()->name.substr(6,1));
+
+            //For debug
+            std::cout << "Before sign_S \n";
+            printSemaphoreQueues();
+
             sign_S(index,currentProcessInCpu);
+
+            //For debug
+            std::cout << "After sign_S \n";
+            printSemaphoreQueues();
         }
 
         //If the process in the cpu is executing its last instruction.
@@ -253,4 +271,11 @@ void SchedulingManager::sign_S(int index, std::shared_ptr<PCB> aProcess) {
         readyQueue.push_back(semaphores[index]->getSemaphoreQueue()->front());
         semaphores[index]->getSemaphoreQueue()->pop_front();
     }
+}
+
+void SchedulingManager::printSemaphoreQueues() {
+    for (int i = 0; i < semaphores.size(); i++) {
+        semaphores[i]->printSemaphoreQueue();
+    }
+
 }

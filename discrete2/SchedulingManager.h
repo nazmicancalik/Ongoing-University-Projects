@@ -47,6 +47,8 @@ private:
 
     void sign_S(int index, std::shared_ptr<PCB> aProcess);
 
+    void printSemaphoreQueues();
+
     std::string processFile;
     std::string outputFile;
     std::vector<std::shared_ptr<PCB>> arrivalQueue;

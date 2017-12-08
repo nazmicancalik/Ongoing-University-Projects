@@ -40,3 +40,11 @@ int Semaphore::getValue() {
 std::deque<std::shared_ptr<PCB>>* Semaphore::getSemaphoreQueue() {
     return &semaphore_queue;
 }
+
+void Semaphore::printSemaphoreQueue() {
+    std::cout << "Semaphore queue for " + index;
+    for (int i = 0; i < semaphore_queue.size(); i++) {
+        std::cout << " " + semaphore_queue[i]->getProcessName();
+    }
+    std::cout << " \n";
+}
