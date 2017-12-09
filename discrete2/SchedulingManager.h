@@ -39,13 +39,13 @@ private:
 
     bool canExecuteNextInstruction();
 
-    void printQueue();
+    void printQueue(int aTime = 0);
 
     void initializeSemaphores();
 
-    void wait_S(int index, std::shared_ptr<PCB> aProcess);
+    void wait_S(int index, std::shared_ptr<PCB> aProcess, int aTime = 0);
 
-    void sign_S(int index, std::shared_ptr<PCB> aProcess);
+    void sign_S(int index, std::shared_ptr<PCB> aProcess, int aTime);
 
     void printSemaphoreQueues();
 
