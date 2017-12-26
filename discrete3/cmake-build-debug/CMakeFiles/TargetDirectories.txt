@@ -1,0 +1,3 @@
+/home/gray/workspace/Ongoing-University-Projects/discrete3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/gray/workspace/Ongoing-University-Projects/discrete3/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/gray/workspace/Ongoing-University-Projects/discrete3/cmake-build-debug/CMakeFiles/discrete3.dir

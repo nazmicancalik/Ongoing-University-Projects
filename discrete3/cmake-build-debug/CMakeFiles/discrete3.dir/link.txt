@@ -1,0 +1,1 @@
+/usr/bin/c++   -g   CMakeFiles/discrete3.dir/main.cpp.o CMakeFiles/discrete3.dir/PCB.cpp.o CMakeFiles/discrete3.dir/SchedulingManager.cpp.o CMakeFiles/discrete3.dir/Semaphore.cpp.o  -o discrete3 
