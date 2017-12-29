@@ -62,6 +62,8 @@ private:
     //Execute the display manager's operation.
     void dispM(int index, std::shared_ptr<PCB> aProcess, int aTime);
 
+    void readM(int index, std::shared_ptr<PCB> aProcess, int aTime);
+
     //Takes the process out of Io Queue.
     void takeProcessOutOfIoQueue(int localCurrentTime);
     
@@ -76,7 +78,8 @@ private:
     std::deque<std::shared_ptr<PCB>> displayQueue0;
     std::deque<std::shared_ptr<PCB>> displayQueue1;
     std::deque<std::shared_ptr<PCB>> memoryQueue;
-    std::vector<std::string> memoryCache;
+    std::vector<int> memoryCache {-1,-1};
+    int recentlyUsed = 1;
 
     int displayQueueExitTime0 = std::numeric_limits<int>::max();
     int displayQueueExitTime1 = std::numeric_limits<int>::max();

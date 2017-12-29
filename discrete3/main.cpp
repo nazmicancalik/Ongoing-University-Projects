@@ -9,7 +9,7 @@ int main(int argc, char **argv)
     if (argc < 2)
     {
         //TODO Change this before pushing to the repository.
-        definitionFileName = "/home/gray/workspace/Ongoing-University-Projects/discrete3/other/conf_1/definition.txt";
+        definitionFileName = "/home/gray/workspace/Ongoing-University-Projects/discrete3/other/conf_2/definition.txt";
     }
     else
     {

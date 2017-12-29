@@ -46,7 +46,7 @@ void SchedulingManager::initializeArrivalQueue() {
         int arrivalTime = std::stoi(tokens->at(i + 2));
         //Create a shared pointer to the newly created object.
         std::string ins_file_name =
-                "/home/gray/workspace/Ongoing-University-Projects/discrete3/other/conf_1/" + tokens->at(i + 1);
+                "/home/gray/workspace/Ongoing-University-Projects/discrete3/other/conf_2/" + tokens->at(i + 1);
         std::cout << ins_file_name << std::endl;
         std::shared_ptr<PCB> process = std::make_shared<PCB>(PCB(tokens->at(i), ins_file_name, arrivalTime));
         //Push to arrival queue.
@@ -109,18 +109,40 @@ void SchedulingManager::executeInstruction() {
 
     //If the process executed a wait instruction (last time) on a semaphore that is not available, 
     //prevent it from executing instructions.  
-    while (canExecuteNextInstruction() && !(currentProcessInCpu->shouldEnterSemaphoreQueue) && !(currentProcessInCpu->shouldEnterIoQueue)) {
+    while (canExecuteNextInstruction() && !(currentProcessInCpu->shouldEnterSemaphoreQueue) &&
+           !(currentProcessInCpu->shouldEnterIoQueue)) {
 
+        //takeProcessOutOfIoQueue(currentTime + passedTime);
         //If the instruction is display Manager's Operation.
         std::string inst = currentProcessInCpu->getCurrentInstruction()->name;
         int inst_length = currentProcessInCpu->getCurrentInstruction()->length;
         if (currentProcessInCpu->getCurrentInstruction()->name.substr(0, 6) == "dispM_") {
-            int index = stoi(currentProcessInCpu->getCurrentInstruction()->name.substr(6, 1));
+            int index = stoi(currentProcessInCpu->getCurrentInstruction()->name.substr(6,1));
             currentProcessInCpu->lastQueueOperationTime = currentProcessInCpu->getCurrentInstruction()->length;
-            dispM(index,currentProcessInCpu,currentTime + passedTime);
+            dispM(index, currentProcessInCpu, currentTime + passedTime);
             currentProcessInCpu->executeCurrentInstruction();
             currentProcessInCpu->shouldEnterIoQueue = true;
             break;
+        }
+
+        if (currentProcessInCpu->getCurrentInstruction()->name.substr(0, 6) == "readM_") {
+            int index = stoi(currentProcessInCpu->getCurrentInstruction()->name.substr(6, currentProcessInCpu->getCurrentInstruction()->name.size()-1));
+            currentProcessInCpu->lastQueueOperationTime = currentProcessInCpu->getCurrentInstruction()->length;
+
+            std::cout << "Cache value at 0 : "<<memoryCache[0] << "Cache value at 1 : " << memoryCache[1] << std::endl;
+            if(memoryCache[0] == index){
+                recentlyUsed = 0;
+                currentProcessInCpu->executeCurrentInstruction();
+            }else if(memoryCache[1] == index){
+                recentlyUsed = 1;
+                currentProcessInCpu->executeCurrentInstruction();
+            }else{
+                currentProcessInCpu->lastBlockNumber = index;
+                readM(index, currentProcessInCpu, currentTime + passedTime);
+                currentProcessInCpu->executeCurrentInstruction();
+                currentProcessInCpu->shouldEnterIoQueue = true;
+                break;
+            }
         }
         /*
         //If the instruction is Wait.
@@ -160,9 +182,9 @@ void SchedulingManager::executeInstruction() {
         //Update remaining quantum time.
         remainingQuantumTime = remainingQuantumTime - currentProcessInCpu->getCurrentInstruction()->length;
         passedTime += currentProcessInCpu->getCurrentInstruction()->length;
-        std::cout <<currentTime + passedTime  << " *************"<<std::endl;
+        std::cout << currentTime + passedTime << " *************" << std::endl;
         //Exit from io queue.
-        takeProcessOutOfIoQueue(currentTime+passedTime);
+        takeProcessOutOfIoQueue(currentTime + passedTime);
 
         if (currentProcessInCpu->getCurrentInstruction()->name == "exit") {
             currentProcessInCpu->setFinishTime(currentTime + passedTime);
@@ -212,6 +234,7 @@ void SchedulingManager::getProcessOutOfCpu() {
 
         //If the process isn't going to enter semaphore queue, then push it back to ready queue.
         if (!(currentProcessInCpu->shouldEnterSemaphoreQueue) && !(currentProcessInCpu->shouldEnterIoQueue)) {
+            takeProcessOutOfIoQueue(currentTime);
             readyQueue.push_back(currentProcessInCpu);
         }
     }
@@ -346,8 +369,8 @@ void SchedulingManager::dispM(int index, std::shared_ptr<PCB> aProcess, int aTim
         //Finish time of the memory operation, exit time. aTime is the time it enters the cpu (Starting time of the execution of the instruction.)
         queueExitTime = aTime + aProcess->getCurrentInstruction()->length;
         //If there is a process in the queue update the exit time accordingly.
-        if(!displayQueue0.empty()){
-            if(displayQueue0.back()->displayQueueExitTime0 >= aTime){
+        if (!displayQueue0.empty()) {
+            if (displayQueue0.back()->displayQueueExitTime0 >= aTime) {
                 queueExitTime = aProcess->getCurrentInstruction()->length + displayQueue0.back()->displayQueueExitTime0;
                 //std::cout << "Gelen processin current instrucitonu : " << aProcess->getCurrentInstruction()->name <<" Lengthi :  "<< aProcess->getCurrentInstruction()->length << "Son elemanın çıkış zamanı : " << displayQueue0.back()->displayQueueExitTime0<<" Çıkış zamanı:" <<queueExitTime << std::endl;
             }
@@ -375,8 +398,8 @@ void SchedulingManager::dispM(int index, std::shared_ptr<PCB> aProcess, int aTim
         //Finish time of the memory operation, exit time. aTime is the time it enters the cpu (Starting time of the execution of the instruction.)
         queueExitTime = aTime + aProcess->getCurrentInstruction()->length;
         //If there is a process in the queue update the exit time accordingly.
-        if(!displayQueue1.empty()){
-            if(displayQueue1.back()->displayQueueExitTime1 > aTime){
+        if (!displayQueue1.empty()) {
+            if (displayQueue1.back()->displayQueueExitTime1 > aTime) {
                 queueExitTime = aProcess->getCurrentInstruction()->length + displayQueue1.back()->displayQueueExitTime1;
             }
         }
@@ -407,6 +430,47 @@ void SchedulingManager::dispM(int index, std::shared_ptr<PCB> aProcess, int aTim
 
 }
 
+void SchedulingManager::readM(int index, std::shared_ptr<PCB> aProcess, int aTime) {
+    int queueExitTime;
+
+    //Finish time of the memory operation, exit time. aTime is the time it enters the cpu (Starting time of the execution of the instruction.)
+    queueExitTime = aTime + aProcess->getCurrentInstruction()->length;
+    //If there is a process in the queue update the exit time accordingly.
+    if (!memoryQueue.empty()) {
+        if (memoryQueue.back()->memoryQueueExitTime >= aTime) {
+            queueExitTime = aProcess->getCurrentInstruction()->length + memoryQueue.back()->memoryQueueExitTime;
+            //std::cout << "Gelen processin current instrucitonu : " << aProcess->getCurrentInstruction()->name <<" Lengthi :  "<< aProcess->getCurrentInstruction()->length << "Son elemanın çıkış zamanı : " << displayQueue0.back()->displayQueueExitTime0<<" Çıkış zamanı:" <<queueExitTime << std::endl;
+        }
+    }
+
+    //Update the cache
+    //memoryCache[1-recentlyUsed] = index;
+    //recentlyUsed = 1-recentlyUsed;      //Change the recently used one.//TODO oLMAZSA ZAMAN TUT DİREK
+
+    aProcess->memoryQueueExitTime = queueExitTime;
+    memoryQueue.push_back(aProcess);
+    //Write part
+    std::string outputFileName = "output_12.txt";
+
+    IOManager::write(outputFileName, std::to_string(aTime));
+    IOManager::write(outputFileName, "::HEAD-");
+    for (int j = 0; j < memoryQueue.size(); j++) {
+        IOManager::write(outputFileName, memoryQueue[j]->getProcessName());
+        IOManager::write(outputFileName, "-");
+    }
+
+    //To be able to make the output look as requested.
+    if (memoryQueue.size() == 0) {
+        IOManager::write(outputFileName, "-");
+    }
+
+    IOManager::write(outputFileName, "TAIL\n");
+    if (nextClosestEventTime > queueExitTime) {
+        nextClosestEventTime = queueExitTime;
+    }
+
+}
+
 void SchedulingManager::takeProcessOutOfIoQueue(int localCurrentTime) {
 
     //Check each queue for exit time.
@@ -418,11 +482,11 @@ void SchedulingManager::takeProcessOutOfIoQueue(int localCurrentTime) {
             displayQueue0.pop_front();
             //Birisi çıkınca zamanını update et diğerrinin
 
-            if(!displayQueue0.empty()){
+            if (!displayQueue0.empty()) {
                 std::shared_ptr<PCB> nextProcess = displayQueue0.front();
                 //std::cout << nextProcess->getCurrentInstruction()->name << "nazmi"<<std::endl;
                 nextProcess->displayQueueExitTime0 = nextProcess->lastQueueOperationTime + localCurrentTime;
-                nextProcess->lastQueueOperationTime  = 0; //Reset
+                nextProcess->lastQueueOperationTime = 0; //Reset
             }
 
             process->shouldEnterIoQueue = false;
@@ -453,11 +517,11 @@ void SchedulingManager::takeProcessOutOfIoQueue(int localCurrentTime) {
             displayQueue1.pop_front();
 
             //Birisi çıkınca zamanını update et diğerrinin
-            if(!displayQueue1.empty()){
+            if (!displayQueue1.empty()) {
                 std::shared_ptr<PCB> nextProcess = displayQueue1.front();
                 //std::cout << nextProcess->getCurrentInstruction()->name << "nazmi"<<std::endl;
                 nextProcess->displayQueueExitTime1 = nextProcess->lastQueueOperationTime + localCurrentTime;
-                nextProcess->lastQueueOperationTime  = 0; //Reset
+                nextProcess->lastQueueOperationTime = 0; //Reset
             }
             process->shouldEnterIoQueue = false;
             //std::cout << "Çıkış oldu 1 dan saat : " << currentTime << std::endl;
@@ -479,13 +543,42 @@ void SchedulingManager::takeProcessOutOfIoQueue(int localCurrentTime) {
             IOManager::write(outputFileName, "TAIL\n");
         }
     }
-/*
-    for (int i = 0; i < displayQueue0.size(); ++i) {
+
+    for (int i = 0; i < memoryQueue.size(); ++i) {
         std::shared_ptr<PCB> process = memoryQueue[i];
-        if (currentTime == process->memoryQueueExitTime) {
+        if (currentTime >= process->memoryQueueExitTime) {
             readyQueue.push_back(process);
             memoryQueue.pop_front();
-            std::cout << "Çıkış oldu 0 dan saat : " << currentTime << std::endl;
+
+            memoryCache[1-recentlyUsed] = process->lastBlockNumber;//TODO
+            recentlyUsed = 1-recentlyUsed;
+            process->lastBlockNumber= NULL; //TODO !!!!!!!!!!!!!!!!!!!!!!!!1
+
+
+            //Birisi çıkınca zamanını update et diğerrinin
+            if (!memoryQueue.empty()) {
+                std::shared_ptr<PCB> nextProcess = memoryQueue.front();
+                //std::cout << nextProcess->getCurrentInstruction()->name << "nazmi"<<std::endl;
+                nextProcess->memoryQueueExitTime = nextProcess->lastQueueOperationTime + localCurrentTime;
+                nextProcess->lastQueueOperationTime = 0; //Reset
+            }
+            process->shouldEnterIoQueue = false;
+
+            //Write part
+            std::string outputFileName = "output_12.txt"; //Memory
+            IOManager::write(outputFileName, std::to_string(localCurrentTime));
+            IOManager::write(outputFileName, "::HEAD-");
+            for (int j = 0; j < memoryQueue.size(); j++) {
+                IOManager::write(outputFileName, memoryQueue[j]->getProcessName());
+                IOManager::write(outputFileName, "-");
+            }
+
+            //To be able to make the output look as requested.
+            if (memoryQueue.size() == 0) {
+                IOManager::write(outputFileName, "-");
+            }
+
+            IOManager::write(outputFileName, "TAIL\n");
         }
-    }*/
+    }
 }

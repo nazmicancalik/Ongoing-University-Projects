@@ -46,6 +46,7 @@ public:
     int displayQueueExitTime1 = std::numeric_limits<int>::max();
     int memoryQueueExitTime = std::numeric_limits<int>::max();
     int lastQueueOperationTime = 0;
+    int lastBlockNumber;
 
 private:
     void initializeInstructions();
