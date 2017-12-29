@@ -41,9 +41,11 @@ public:
     bool shouldEnterSemaphoreQueue = false;
 
     bool shouldEnterIoQueue = false;
+
     int displayQueueExitTime0 = std::numeric_limits<int>::max();
     int displayQueueExitTime1 = std::numeric_limits<int>::max();
     int memoryQueueExitTime = std::numeric_limits<int>::max();
+    int lastQueueOperationTime = 0;
 
 private:
     void initializeInstructions();
@@ -54,6 +56,7 @@ private:
     int currentInstructionNumber;
     int arrivalTime;
     int finishTime = std::numeric_limits<int>::max();
+
 
 };
 

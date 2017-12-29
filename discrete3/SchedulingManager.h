@@ -63,7 +63,7 @@ private:
     void dispM(int index, std::shared_ptr<PCB> aProcess, int aTime);
 
     //Takes the process out of Io Queue.
-    void takeProcessOutOfIoQueue();
+    void takeProcessOutOfIoQueue(int localCurrentTime);
     
     std::string processFile;	//Name of the definition file.
     std::string outputFile;		//Output file to print the situations of the queues.
@@ -86,7 +86,7 @@ private:
     int quantum = 100;	 //Quantum time of the Cpu.
     int remainingQuantumTime = 100;	//Remaining quantum time of the Cpu.
     int currentTime;	//Current time.
-    int cpuFinishTime = 0;	//Cpu finish time of the current process.
+    int cpuFinishTime = std::numeric_limits<int>::max();	//Cpu finish time of the current process.
     int nextClosestEventTime = 0;	//Next closest event time.
     bool isCpuBusy = false;	//True if the Cpu is busy.
 
