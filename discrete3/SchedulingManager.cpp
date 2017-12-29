@@ -67,34 +67,15 @@ void SchedulingManager::executeRoundRobin() {
     currentTime = 0;
     int processCount = arrivalQueue.size();
     nextClosestEventTime = std::numeric_limits<int>::max();
+
     //The main part where the discrete events are executed and time changed.
     while (finishedProcesses.size() != processCount) {
         //Execute discrete events.
-        /*
-        if(cpuFinishTime==currentTime) {
-            takeProcessOutOfIoQueue();
-        }
-*/
         putArrivedPCBToReadyQueue();
         getProcessOutOfCpu();
         takeProcessIntoCpu();
         executeInstruction();
 
-
-/*
-        //Update the time for display queue exits.
-        for (int i = 0; i < displayQueue0.size(); ++i) {
-            if(nextClosestEventTime > displayQueue0[i]->displayQueueExitTime0){
-                nextClosestEventTime = displayQueue0[i]->displayQueueExitTime0;
-            }
-        }
-
-        for (int i = 0; i < displayQueue1.size(); ++i) {
-            if(nextClosestEventTime > displayQueue1[i]->displayQueueExitTime1){
-                nextClosestEventTime = displayQueue1[i]->displayQueueExitTime1;
-            }
-        }
-*/
         currentTime = nextClosestEventTime;
         nextClosestEventTime = std::numeric_limits<int>::max();
     }
@@ -368,7 +349,7 @@ void SchedulingManager::dispM(int index, std::shared_ptr<PCB> aProcess, int aTim
         if(!displayQueue0.empty()){
             if(displayQueue0.back()->displayQueueExitTime0 >= aTime){
                 queueExitTime = aProcess->getCurrentInstruction()->length + displayQueue0.back()->displayQueueExitTime0;
-                std::cout << "Gelen processin current instrucitonu : " << aProcess->getCurrentInstruction()->name <<" Lengthi :  "<< aProcess->getCurrentInstruction()->length << "Son elemanın çıkış zamanı : " << displayQueue0.back()->displayQueueExitTime0<<" Çıkış zamanı:" <<queueExitTime << std::endl;
+                //std::cout << "Gelen processin current instrucitonu : " << aProcess->getCurrentInstruction()->name <<" Lengthi :  "<< aProcess->getCurrentInstruction()->length << "Son elemanın çıkış zamanı : " << displayQueue0.back()->displayQueueExitTime0<<" Çıkış zamanı:" <<queueExitTime << std::endl;
             }
         }
         aProcess->displayQueueExitTime0 = queueExitTime;
@@ -401,6 +382,23 @@ void SchedulingManager::dispM(int index, std::shared_ptr<PCB> aProcess, int aTim
         }
         aProcess->displayQueueExitTime1 = queueExitTime;
         displayQueue1.push_back(aProcess);
+
+        //Write part
+        std::string outputFileName = "output_11.txt";
+
+        IOManager::write(outputFileName, std::to_string(aTime));
+        IOManager::write(outputFileName, "::HEAD-");
+        for (int j = 0; j < displayQueue1.size(); j++) {
+            IOManager::write(outputFileName, displayQueue1[j]->getProcessName());
+            IOManager::write(outputFileName, "-");
+        }
+
+        //To be able to make the output look as requested.
+        if (displayQueue1.size() == 0) {
+            IOManager::write(outputFileName, "-");
+        }
+
+        IOManager::write(outputFileName, "TAIL\n");
     }
 
     if (nextClosestEventTime > queueExitTime) {
@@ -415,20 +413,20 @@ void SchedulingManager::takeProcessOutOfIoQueue(int localCurrentTime) {
 
     for (int i = 0; i < displayQueue0.size(); ++i) {
         std::shared_ptr<PCB> process = displayQueue0[i];
-        if (localCurrentTime >= process->displayQueueExitTime0) {//TODO Buraları büyük eşittir yaptım normalde ==
+        if (localCurrentTime >= process->displayQueueExitTime0) {
             readyQueue.push_back(process);
             displayQueue0.pop_front();
-            //Birisi çıkınca zamanını update et diğerrinin//TODO
+            //Birisi çıkınca zamanını update et diğerrinin
 
             if(!displayQueue0.empty()){
                 std::shared_ptr<PCB> nextProcess = displayQueue0.front();
-                std::cout << nextProcess->getCurrentInstruction()->name << "nazmi"<<std::endl;
+                //std::cout << nextProcess->getCurrentInstruction()->name << "nazmi"<<std::endl;
                 nextProcess->displayQueueExitTime0 = nextProcess->lastQueueOperationTime + localCurrentTime;
                 nextProcess->lastQueueOperationTime  = 0; //Reset
             }
 
             process->shouldEnterIoQueue = false;
-            std::cout << "Çıkış oldu 0 dan saat : " << localCurrentTime << std::endl;
+            //std::cout << "Çıkış oldu 0 dan saat : " << localCurrentTime << std::endl;
             std::string outputFileName = "output_10.txt";
 
             //Write part
@@ -444,17 +442,41 @@ void SchedulingManager::takeProcessOutOfIoQueue(int localCurrentTime) {
                 IOManager::write(outputFileName, "-");
             }
 
-            IOManager::write(outputFileName, "TAIL çıkış\n");
+            IOManager::write(outputFileName, "TAIL\n");
         }
     }
 
     for (int i = 0; i < displayQueue1.size(); ++i) {
         std::shared_ptr<PCB> process = displayQueue1[i];
-        if (localCurrentTime >= process->displayQueueExitTime1) {//TODO Buraları büyük eşittir yaptım normalde ==
+        if (localCurrentTime >= process->displayQueueExitTime1) {
             readyQueue.push_back(process);
             displayQueue1.pop_front();
+
+            //Birisi çıkınca zamanını update et diğerrinin
+            if(!displayQueue1.empty()){
+                std::shared_ptr<PCB> nextProcess = displayQueue1.front();
+                //std::cout << nextProcess->getCurrentInstruction()->name << "nazmi"<<std::endl;
+                nextProcess->displayQueueExitTime1 = nextProcess->lastQueueOperationTime + localCurrentTime;
+                nextProcess->lastQueueOperationTime  = 0; //Reset
+            }
             process->shouldEnterIoQueue = false;
-            std::cout << "Çıkış oldu 1 dan saat : " << currentTime << std::endl;
+            //std::cout << "Çıkış oldu 1 dan saat : " << currentTime << std::endl;
+
+            //Write part
+            std::string outputFileName = "output_11.txt"; //Printer 1
+            IOManager::write(outputFileName, std::to_string(localCurrentTime));
+            IOManager::write(outputFileName, "::HEAD-");
+            for (int j = 0; j < displayQueue1.size(); j++) {
+                IOManager::write(outputFileName, displayQueue1[j]->getProcessName());
+                IOManager::write(outputFileName, "-");
+            }
+
+            //To be able to make the output look as requested.
+            if (displayQueue1.size() == 0) {
+                IOManager::write(outputFileName, "-");
+            }
+
+            IOManager::write(outputFileName, "TAIL\n");
         }
     }
 /*
